@@ -1,7 +1,7 @@
 site_name: pyModbusTCPtools
 site_description: Biblioteca Python para comunicação Modbus TCP resiliente com leitura e escrita tipada
 site_author: Jocivaldo Siqueira da Silva Júnior
-site_url: http://localhost:8000
+site_url: https://siqueira89jr-hash.github.io/pyModbusTCPtools
 
 repo_name: pyModbusTCPtools
 repo_url: https://github.com/siqueira89jr-hash/pyModbusTCPtools
