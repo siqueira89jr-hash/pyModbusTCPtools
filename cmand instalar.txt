@@ -1,0 +1,8 @@
+# Máquina origem
+zip dist dist.zip
+
+# Máquina destino
+unzip dist.zip
+python -m venv .venv
+.venv\Scripts\activate
+pip install dist\pyModbusTCPtools-0.1.0-py3-none-any.whl

@@ -1,0 +1,102 @@
+site_name: pyModbusTCPtools
+site_description: Biblioteca Python para comunicação Modbus TCP resiliente com leitura e escrita tipada
+site_author: Jocivaldo Siqueira da Silva Júnior
+site_url: http://localhost:8000
+
+repo_name: pyModbusTCPtools
+repo_url: https://github.com/siqueira89jr-hash/pyModbusTCPtools
+edit_uri: ""
+
+theme:
+  name: material
+  language: pt
+  features:
+    - navigation.instant
+    - navigation.tracking
+    - navigation.tabs
+    - navigation.sections
+    - navigation.top
+    - search.highlight
+    - search.suggest
+    - content.code.copy
+    - content.tabs.link
+  palette:
+    - scheme: default
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/weather-night
+        name: Modo escuro
+    - scheme: slate
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/weather-sunny
+        name: Modo claro
+  font:
+    text: Roboto
+    code: JetBrains Mono
+
+markdown_extensions:
+  - attr_list
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.highlight:
+      linenums: true
+      pygments_lang_class: true
+  - def_list
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - admonition
+  - pymdownx.details
+  - tables
+
+plugins:
+  - search
+  - glightbox
+
+nav:
+  - Início: index.md
+
+  - Instalação:
+      - installation.md
+
+  - Quickstart:
+      - quickstart.md
+
+  - Conceitos:
+      - Fundamentos Modbus: concepts/modbus_basics.md
+      - Endianness: concepts/endianness.md
+      - Tratamento de Erros: concepts/error_handling.md
+
+  - API:
+      - Cliente ModbusTCPResiliente: api/client.md
+      - Enums: api/enums.md
+      - Exceções: api/exceptions.md
+
+  - Exemplos:
+      - Leitura de Discrete Inputs: examples/read_discrete_inputs.md
+      - Leitura de Coils: examples/read_coils.md
+      - Escrita de Coils: examples/write_coils.md
+      - Leitura de Inteiros de 16 Bits: examples/read_integers16bits.md
+      - Leitura de Inteiros de 32 Bits: examples/read_integers32bits.md
+      - Leitura de Inteiros de 64 Bits: examples/read_integers64bits.md
+      - Leitura de Ponto Flutuante de 32 Bits: examples/read_floats32bits.md
+      - Leitura de Ponto Flutuante de 64 Bits: examples/read_floats64bits.md
+      - Escrita de Inteiros de 16 Bits: examples/write_integers16bits.md
+      - Escrita de Inteiros de 32 Bits: examples/write_integers32bits
+      - Escrita de Inteiros de 64 Bits: examples/write_integers64bits.md
+      - Escrita de Ponto Flutuante de 32 Bits: examples/write_floats32bits.md
+      - Escrita de Ponto Flutuante de 64 Bits: examples/write_floats64bits.md  
+      - Reconexão: examples/reconnection.md
+
+  - Changelog:
+      - changelog.md
