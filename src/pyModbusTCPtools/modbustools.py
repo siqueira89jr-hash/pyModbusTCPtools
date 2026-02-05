@@ -599,52 +599,21 @@ class ModbusTCPResiliente:
         unsigned = value & 0xFFFFFFFF
         return self._uint32_to_regs_core(unsigned, endian)
 
-
     def read_holding_uint32_safe(self, addr, endian=Endian.BE):
         """Lê UINT32 de Holding Register."""
-        try:
-            regs = self.read_holding_registers_safe(addr, 2)
-            if regs is None:
-                return None
-
-            return self._regs_to_uint32(regs, endian)
-
-        except ModbusConversionError as e:
-            self._handle_error(e, "read_holding_uint32_safe")
-            return None
+        return self.read_holding_typed_safe(addr, ModbusDataType.UINT32, endian)
 
     def write_holding_uint32_safe(self, addr, value, endian=Endian.BE):
         """Escreve UINT32 em Holding Register."""
-        try:
-            regs = self._uint32_to_regs(value, endian)
-            return self.write_multiple_registers_safe(addr, regs)
-
-        except ModbusConversionError as e:
-            self._handle_error(e, "write_holding_uint32_safe")
-            return False
-
+        return self.write_holding_typed_safe(addr, value, ModbusDataType.UINT32, endian)
+    
     def read_holding_int32_safe(self, addr, endian=Endian.BE):
         """Lê INT32 de Holding Register."""
-        try:
-            regs = self.read_holding_registers_safe(addr, 2)
-            if regs is None:
-                return None
-
-            return self._regs_to_int32(regs, endian)
-
-        except ModbusConversionError as e:
-            self._handle_error(e, "read_holding_int32_safe")
-            return None
+        return self.read_holding_typed_safe(addr, ModbusDataType.INT32, endian)
 
     def write_holding_int32_safe(self, addr, value, endian=Endian.BE):
         """Escreve INT32 em Holding Register."""
-        try:
-            regs = self._int32_to_regs(value, endian)
-            return self.write_multiple_registers_safe(addr, regs)
-
-        except ModbusConversionError as e:
-            self._handle_error(e, "write_holding_int32_safe")
-            return False
+        return self.write_holding_typed_safe(addr, value, ModbusDataType.INT32, endian)
 
     def _regs_to_uint64_core(self, regs, endian: Endian):
         """Converte 4 registradores em UINT64 respeitando endian e byte swap."""
@@ -713,49 +682,19 @@ class ModbusTCPResiliente:
 
     def read_holding_uint64_safe(self, addr, endian=Endian.BE):
         """Lê UINT64 de Holding Register."""
-        try:
-            regs = self.read_holding_registers_safe(addr, 4)
-            if regs is None:
-                return None
-
-            return self._regs_to_uint64(regs, endian)
-
-        except ModbusConversionError as e:
-            self._handle_error(e, "read_holding_uint64_safe")
-            return None
+        return self.read_holding_typed_safe(addr, ModbusDataType.UINT64, endian)
 
     def write_holding_uint64_safe(self, addr, value, endian=Endian.BE):
         """Escreve UINT64 em Holding Register."""
-        try:
-            regs = self._uint64_to_regs(value, endian)
-            return self.write_multiple_registers_safe(addr, regs)
-
-        except ModbusConversionError as e:
-            self._handle_error(e, "write_holding_uint64_safe")
-            return False
+        return self.write_holding_typed_safe(addr, value, ModbusDataType.UINT64, endian)
 
     def read_holding_int64_safe(self, addr, endian=Endian.BE):
         """Lê INT64 de Holding Register."""
-        try:
-            regs = self.read_holding_registers_safe(addr, 4)
-            if regs is None:
-                return None
-
-            return self._regs_to_int64(regs, endian)
-
-        except ModbusConversionError as e:
-            self._handle_error(e, "read_holding_int64_safe")
-            return None
+        return self.read_holding_typed_safe(addr, ModbusDataType.INT64, endian)
 
     def write_holding_int64_safe(self, addr, value, endian=Endian.BE):
         """Escreve INT64 em Holding Register."""
-        try:
-            regs = self._int64_to_regs(value, endian)
-            return self.write_multiple_registers_safe(addr, regs)
-
-        except ModbusConversionError as e:
-            self._handle_error(e, "write_holding_int64_safe")
-            return False
+        return self.write_holding_typed_safe(addr, value, ModbusDataType.INT64, endian)
 
     def _regs_to_float32(self, regs, endian: Endian):
         """Converte 2 registradores em FLOAT32."""
@@ -777,39 +716,15 @@ class ModbusTCPResiliente:
 
     def read_holding_float32_safe(self, addr, endian=Endian.BE):
         """Lê FLOAT32 de Holding Register."""
-        try:
-            regs = self.read_holding_registers_safe(addr, 2)
-            if regs is None:
-                return None
-
-            return self._regs_to_float32(regs, endian)
-
-        except ModbusConversionError as exc:
-            self._handle_error(exc, "read_holding_float32_safe")
-            return None
+        return self.read_holding_typed_safe(addr, ModbusDataType.FLOAT32, endian)
 
     def read_input_float32_safe(self, addr, endian=Endian.BE):
         """Lê FLOAT32 de Input Register."""
-        try:
-            regs = self.read_input_registers_safe(addr, 2)
-            if regs is None:
-                return None
-
-            return self._regs_to_float32(regs, endian)
-
-        except ModbusConversionError as exc:
-            self._handle_error(exc, "read_input_float32_safe")
-            return None
+        return self.read_input_typed_safe(addr, ModbusDataType.FLOAT32, endian)
 
     def write_holding_float32_safe(self, addr, value, endian=Endian.BE):
         """Escreve FLOAT32 em Holding Register."""
-        try:
-            regs = self._float32_to_regs(value, endian)
-            return self.write_multiple_registers_safe(addr, regs)
-
-        except ModbusConversionError as exc:
-            self._handle_error(exc, "write_holding_float32_safe")
-            return False
+        return self.write_holding_typed_safe(addr, value, ModbusDataType.FLOAT32, endian)
 
     def _regs_to_float64(self, regs, endian: Endian):
         """Converte 4 registradores em FLOAT64 (DOUBLE)."""
@@ -830,36 +745,12 @@ class ModbusTCPResiliente:
 
     def read_holding_float64_safe(self, addr, endian=Endian.BE):
         """Lê FLOAT64 (DOUBLE) de Holding Register."""
-        try:
-            regs = self.read_holding_registers_safe(addr, 4)
-            if regs is None:
-                return None
-
-            return self._regs_to_float64(regs, endian)
-
-        except ModbusConversionError as exc:
-            self._handle_error(exc, "read_holding_float64_safe")
-            return None
+        return self.read_holding_typed_safe(addr, ModbusDataType.FLOAT64, endian)
 
     def read_input_float64_safe(self, addr, endian=Endian.BE):
         """Lê FLOAT64 (DOUBLE) de Input Register."""
-        try:
-            regs = self.read_input_registers_safe(addr, 4)
-            if regs is None:
-                return None
-
-            return self._regs_to_float64(regs, endian)
-
-        except ModbusConversionError as exc:
-            self._handle_error(exc, "read_input_float64_safe")
-            return None
+        return self.read_input_typed_safe(addr, ModbusDataType.FLOAT64, endian)
 
     def write_holding_float64_safe(self, addr, value, endian=Endian.BE):
         """Escreve FLOAT64 (DOUBLE) em Holding Register."""
-        try:
-            regs = self._float64_to_regs(value, endian)
-            return self.write_multiple_registers_safe(addr, regs)
-
-        except ModbusConversionError as exc:
-            self._handle_error(exc, "write_holding_float64_safe")
-            return False
+        return self.write_holding_typed_safe(addr, value, ModbusDataType.FLOAT64, endian)
