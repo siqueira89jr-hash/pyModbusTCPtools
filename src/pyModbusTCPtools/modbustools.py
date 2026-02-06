@@ -402,7 +402,7 @@ class ModbusTCPResiliente:
         
     def _dtype_register_count(self, dtype: ModbusDataType) -> int:
         """Retorna quantos registradores (16-bit) o tipo ocupa."""
-        return dtype.bits // 16
+        return dtype.registers
 
     def read_holding_typed_safe(self, addr, dtype: ModbusDataType, endian=Endian.BE):
         """Lê Holding Register e converte conforme ModbusDataType."""
