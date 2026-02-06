@@ -500,14 +500,7 @@ class ModbusTCPResiliente:
         if regs is None:
             return None
 
-        try:
-            return struct.unpack(">h", struct.pack(">H", regs[0]))[0]
-        except Exception:
-            self._log_and_print(
-                "error",
-                "Erro conversão INT16 (Holding Register)"
-            )
-            return None
+        return self._reg_to_int16(regs[0])
         
     def _reg_to_int16(self, value):
         """Converte UINT16 em INT16."""
