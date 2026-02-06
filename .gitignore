@@ -1,0 +1,16 @@
+# MkDocs
+site/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Virtualenv
+.venv/
+
+# Build
+dist/
+build/
+*.egg-info/

@@ -848,4 +848,6 @@ class ModbusTCPResiliente:
         endian: Endian = Endian.BE,
     ) -> bool:
         """Escreve FLOAT64 (DOUBLE) em Holding Register."""
+
         return self.write_holding_typed_safe(addr, value, ModbusDataType.FLOAT64, endian)
+
