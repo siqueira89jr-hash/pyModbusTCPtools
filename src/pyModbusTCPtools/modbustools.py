@@ -674,6 +674,21 @@ class ModbusTCPResiliente:
 
         r = list(regs)
 
+        if endian in (Endian.LE, Endian.LE_SWAP):
+            def swap16(value: int) -> int:
+                return ((value & 0xFF) << 8) | ((value >> 8) & 0xFF)
+
+            r0, r1, r2, r3 = r
+            if endian == Endian.LE_SWAP:
+                r0, r1, r2, r3 = map(swap16, (r0, r1, r2, r3))
+
+            return (
+                (r3 << 48) |
+                (r2 << 32) |
+                (r1 << 16) |
+                r0
+            )
+
         longs = utils.word_list_to_long(
             r,
             big_endian=endian in (Endian.BE, Endian.BE_SWAP)
