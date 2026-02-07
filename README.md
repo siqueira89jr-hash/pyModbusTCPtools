@@ -10,6 +10,7 @@ O objetivo da biblioteca é fornecer uma API clara, segura e robusta para leitur
 
 - Cliente Modbus TCP resiliente
 - Reconexão automática com backoff exponencial
+- Reconexão automática com backoff exponencial e jitter
 - Leitura e escrita segura de Coils e Discrete Inputs
 - Leitura e escrita de Holding Registers e Input Registers
 - Leitura e escrita **tipada**:
@@ -24,9 +25,11 @@ O objetivo da biblioteca é fornecer uma API clara, segura e robusta para leitur
   - Byte swap
   - Word + byte swap
 - Cache interno de endereços Modbus inválidos
+- API pública para limpeza/inspeção do cache de endereços inválidos
 - Exceções explícitas e bem definidas
 - Logging estruturado
 - Compatível com Python 3.8+
+- API com type hints para melhor integração com IDEs e análise estática
 
 ---
 
@@ -111,6 +114,32 @@ A documentação completa inclui:
 Documentação online:
 
 https://siqueira89jr-hash.github.io/pyModbusTCPtools
+
+---
+
+## Cache de endereços inválidos
+
+Além do cache interno, a biblioteca expõe helpers para inspeção e limpeza:
+
+- `clear_invalid_cache()` limpa o cache.
+- `get_invalid_cache_snapshot()` retorna os endereços atualmente em quarentena.
+
+---
+
+## Testes
+
+Para executar a suíte de testes:
+
+```bash
+PYTHONPATH=src python -m unittest discover -s tests
+```
+
+---
+
+## Nota de compatibilidade
+
+Para `UINT64` com `Endian.LE`/`Endian.LE_SWAP`, a ordem de registradores foi ajustada para alinhar o roundtrip
+de encode/decode. Se sua aplicação dependia da ordem anterior, valide com o equipamento.
 
 ---
 

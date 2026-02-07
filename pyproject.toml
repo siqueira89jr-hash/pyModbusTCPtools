@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "pyModbusTCPtools"
-version = "0.1.0"
+version = "0.2.0"
 description = "Biblioteca Python para comunicação Modbus TCP resiliente com leitura e escrita tipada"
 readme = "README.md"
 license = { file = "LICENSE" }
